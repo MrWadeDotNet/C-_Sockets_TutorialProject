@@ -15,14 +15,15 @@ namespace Server
     {
         static List<ClientData> Clients = new List<ClientData>();
         public static Socket listenerSocket;
-       // static List<ClientData> _clients;
-    
+        // static List<ClientData> _clients;
+
 
 
 
 
         static void Main(string[] args) 
         {
+        
             Console.WriteLine("Starting Server...");
 
 
@@ -43,7 +44,7 @@ namespace Server
             Socket listenerSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             int port = 5252;
 
-            IPEndPoint ip = new IPEndPoint(IPAddress.Parse("192.168.1.141"), port); //Parse(Packet.getIPAddr()
+            IPEndPoint ip = new IPEndPoint(IPAddress.Parse("192.168.0.97"), port); //Parse(Packet.getIPAddr()
             listenerSocket.Bind(ip);
 
             while (true)
@@ -72,25 +73,41 @@ namespace Server
 
                     if (readBytes > 0)
                     {
+                       
                         Packet packet = new Packet(Buffer);
                         DataManager(packet);
+                        Console.WriteLine("ReadByes true: {0}", readBytes);
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("ReadByes false: {0}", readBytes);
                     }
                 }
                 catch (SocketException ex)
                 {
-                    Console.WriteLine("Client Disconnected\r\n");
+                   
+                    Console.WriteLine("Client Disconnected {0} \r\n", System.DateTime.Now);
+                    Console.ReadLine();
+              
                 }
             }
         }
         //data manager
         public static void DataManager(Packet p)
         {
+
+            Console.WriteLine("DataManager Called!{0} ", p.packetType);
+
             switch (p.packetType)
             {
                 case PacketType.Chat:
                     foreach(ClientData c in Clients)
                     {
+                        Console.WriteLine("PacketType {0}", p.packetType);
+                    
                         c.clientSocket.Send(p.toBytes());
+
                     }
                     break;
             }
@@ -116,10 +133,12 @@ namespace Server
         }
         public ClientData(Socket clientSocket)
         {
+            
             this.clientSocket = clientSocket;
             clientThread = new Thread(Server.DataIn);
             clientThread.Start(clientSocket);
             SendRegistrationPacket();
+            Console.WriteLine("Client Connected {0}\r\n", System.DateTime.Now);
         }
 
         public void SendRegistrationPacket()

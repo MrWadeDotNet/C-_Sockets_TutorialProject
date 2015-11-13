@@ -3,3 +3,8 @@ C:\Users\Lewis\Google Drive\NSS\CSharp\ChattBoxWithClient\ServerData\bin\Debug\S
 C:\Users\Lewis\Google Drive\NSS\CSharp\ChattBoxWithClient\ServerData\obj\Debug\ServerData.dll
 C:\Users\Lewis\Google Drive\NSS\CSharp\ChattBoxWithClient\ServerData\obj\Debug\ServerData.pdb
 C:\Users\Lewis\Google Drive\NSS\CSharp\ChattBoxWithClient\ServerData\obj\Debug\ServerData.csprojResolveAssemblyReference.cache
+C:\Users\Lewis\Google Drive\NSS\CSharp\SocketTutorialsProject\ServerData\bin\Debug\ServerData.dll
+C:\Users\Lewis\Google Drive\NSS\CSharp\SocketTutorialsProject\ServerData\bin\Debug\ServerData.pdb
+C:\Users\Lewis\Google Drive\NSS\CSharp\SocketTutorialsProject\ServerData\obj\Debug\ServerData.csprojResolveAssemblyReference.cache
+C:\Users\Lewis\Google Drive\NSS\CSharp\SocketTutorialsProject\ServerData\obj\Debug\ServerData.dll
+C:\Users\Lewis\Google Drive\NSS\CSharp\SocketTutorialsProject\ServerData\obj\Debug\ServerData.pdb

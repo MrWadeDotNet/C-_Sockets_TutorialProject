@@ -17,10 +17,8 @@ namespace Client
         public static string userName;
         public static string id;
 
-       
 
-
-        static void Main(string[] args)
+    static void Main(string[] args)
         {
         A: Console.Clear();
 
@@ -32,9 +30,7 @@ namespace Client
         //    string port = Console.ReadLine();
 
 
-             master = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-
-
+            master = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             IPEndPoint ipAddr = new IPEndPoint(IPAddress.Parse(ip), 5252);
 
             try {
@@ -46,19 +42,23 @@ namespace Client
                 Thread.Sleep(1000);
                 goto A;
             }
+
             //Start thread
             Thread t = new Thread(DataIn);
             t.Start();
 
             while (true)
             {
-                Console.WriteLine("::>");
+                Console.WriteLine(":> ");
                 string input = Console.ReadLine();
 
                 Packet p = new Packet(PacketType.Chat, id);
                 p.getData.Add(userName);
                 p.getData.Add(input);
+
+             //   Console.WriteLine("Input " +  p[0]);
                 master.Send(p.toBytes());
+                Console.WriteLine("Sent to server successfully");
 
             }
         }
@@ -67,9 +67,8 @@ namespace Client
 
         static void DataIn()
         {
-            byte[] Buffer;
+            byte[] Buffer = new byte[128];
             int readBytes;
-         
 
             while (true)
             {
@@ -81,7 +80,7 @@ namespace Client
 
                     if (readBytes > 0)
                     {
-                        DataManager(new Packet(Buffer));
+                        DataManager(new Packet(Buffer)); // ????
                     }
                 }
                 catch (SocketException ex)
@@ -90,19 +89,25 @@ namespace Client
                 }
             }
         }
+
+        // Manage the data
+
         static void DataManager(Packet p)
         {
             switch (p.packetType)
             {
                 case PacketType.Registration:
                     id = p.getData[0];
-                    break;
+                    break; 
                 case PacketType.Chat:
                     ConsoleColor c = Console.ForegroundColor;
-                    Console.ForegroundColor = ConsoleColor.DarkBlue;
-
-                    Console.WriteLine(p.getData[0] + " : " + p.getData[1]);
+                    ConsoleColor d = Console.BackgroundColor;
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.BackgroundColor = ConsoleColor.DarkGray;
+                    Console.WriteLine("Packet Data 1:", p.getData[1]);
+              //      Console.WriteLine(p.getData[0] + " : " + p.getData[1]); // ???
                     Console.ForegroundColor = c;
+                    Console.BackgroundColor = d;
                     break;
             }
         
