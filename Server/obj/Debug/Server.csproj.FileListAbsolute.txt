@@ -1,0 +1,8 @@
+C:\Users\Lewis\Google Drive\NSS\CSharp\ChattBoxWithClient\Server\bin\Debug\Server.exe.config
+C:\Users\Lewis\Google Drive\NSS\CSharp\ChattBoxWithClient\Server\bin\Debug\Server.exe
+C:\Users\Lewis\Google Drive\NSS\CSharp\ChattBoxWithClient\Server\bin\Debug\Server.pdb
+C:\Users\Lewis\Google Drive\NSS\CSharp\ChattBoxWithClient\Server\bin\Debug\ServerData.dll
+C:\Users\Lewis\Google Drive\NSS\CSharp\ChattBoxWithClient\Server\bin\Debug\ServerData.pdb
+C:\Users\Lewis\Google Drive\NSS\CSharp\ChattBoxWithClient\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
+C:\Users\Lewis\Google Drive\NSS\CSharp\ChattBoxWithClient\Server\obj\Debug\Server.exe
+C:\Users\Lewis\Google Drive\NSS\CSharp\ChattBoxWithClient\Server\obj\Debug\Server.pdb
