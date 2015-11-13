@@ -17,18 +17,7 @@ namespace Client
         public static string userName;
         public static string id;
 
-        public static Socket Master
-        {
-            get
-            {
-                return master;
-            }
-
-            set
-            {
-                master = value;
-            }
-        }
+       
 
 
         static void Main(string[] args)
@@ -43,7 +32,7 @@ namespace Client
         //    string port = Console.ReadLine();
 
 
-            Socket master = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+             master = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
 
             IPEndPoint ipAddr = new IPEndPoint(IPAddress.Parse(ip), 5252);
@@ -87,8 +76,8 @@ namespace Client
                 try     
                 {
                 
-                   Buffer = new byte[Master.SendBufferSize];
-                   readBytes = Master.Receive(Buffer);
+                   Buffer = new byte[master.SendBufferSize];
+                   readBytes = master.Receive(Buffer);
 
                     if (readBytes > 0)
                     {

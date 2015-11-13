@@ -13,51 +13,48 @@ namespace Server
 {
     class Server
     {
-        static Socket listenerSocket;
-        static List<ClientData> _clients;
-        public const int BufferSize = 256;
+        static List<ClientData> Clients = new List<ClientData>();
+        public static Socket listenerSocket;
+       // static List<ClientData> _clients;
+    
 
-        internal static List<ClientData> Clients
-        {
-            get
-            {
-                return _clients;
-            }
 
-            set
-            {
-                _clients = value;
-            }
-        }
+
 
         static void Main(string[] args) 
         {
             Console.WriteLine("Starting Server...");
 
-            listenerSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            int port = 5252;
-            
-            IPEndPoint ip = new IPEndPoint(IPAddress.Parse("192.168.0.97"), port); //Parse(Packet.getIPAddr()
-            listenerSocket.Bind(ip);
 
-            //Listens connections inside of Thread allows for multi-connections
             Thread listenThread = new Thread(ListenThread);
             listenThread.Start();
-           
 
- 
+
+
         } //Start server
+          // Listener for Listening for Clients to Connect
+          //Listens connections inside of Thread allows for multi-connections
 
-        // Listener for Listening for Clients to Connect
 
-        static void ListenThread()
+        public static void ListenThread()
         {
-            while (true) {
+           // List<ClientData> Clients;
+
+            Socket listenerSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            int port = 5252;
+
+            IPEndPoint ip = new IPEndPoint(IPAddress.Parse("192.168.1.141"), port); //Parse(Packet.getIPAddr()
+            listenerSocket.Bind(ip);
+
+            while (true)
+            {
                 listenerSocket.Listen(0);
-                Clients.Add(new ClientData(listenerSocket.Accept()));
+                Server.Clients.Add(new ClientData(listenerSocket.Accept()));
 
             }
         }
+
+
         //Client Data thread to receive data from each client individually 
 
         public static void DataIn(object cSocket)
@@ -99,6 +96,8 @@ namespace Server
             }
         }
     }
+
+
 
     class ClientData
     {
